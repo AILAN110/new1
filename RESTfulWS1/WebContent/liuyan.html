@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="use/main.css">
+<link rel="stylesheet" type="text/css" href="use/sinaFaceAndEffec.css">
+
+<script type="text/javascript" src="use/jquery-1.js"></script>
+
+<title>留言板</title>
+</head>
+<body>
+<div id="content" style="width: 700px; height: auto;margin-left:320px;margin-top:40px">
+	<div class="wrap">
+		<div class="comment">
+			<div class="head-face">
+				<img src="use/1.jpg">
+				<p>我是鸟</p>
+			</div>
+			<div class="content">
+				<div class="cont-box">
+					<textarea class="text" placeholder="请输入..."></textarea>
+				</div>
+				<div class="tools-box">
+					<div class="operator-box-btn"><span class="face-icon">☺</span><span class="img-icon">▧</span></div>
+					<div class="submit-btn"><input onclick="out()" value="提交评论" type="button"></div>
+				</div>
+			</div>
+		</div>
+		<div id="info-show">
+			<ul></ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="use/main.js"></script>
+<script type="text/javascript" src="use/sinaFaceAndEffec.js"></script>
+<script type="text/javascript">
+	// 绑定表情
+	$('.face-icon').SinaEmotion($('.text'));
+	// 测试本地解析
+	function out() {
+		var inputText = $('.text').val();
+		$('#info-show ul').append(reply(AnalyticEmotion(inputText)));
+		//location.href="http://localhost:8989/RESTfulWS/rest/UserInfoService/aaa";
+		location.href="http://localhost:8989/RESTfulWS1/rest/UserInfoService/name1/"+inputText;
+	}
+	
+	var html;
+	function reply(content){
+		html  = '<li>';
+		html += '<div class="head-face">';
+		<!--html += '<img src="images/1.jpg" / >';-->
+		html += '<img src="use/1.jpg" / >';
+		html += '</div>';
+		html += '<div class="reply-cont">';
+		html += '<p class="username">小小红色飞机</p>';
+		html += '<p class="comment-body">'+content+'</p>';
+		html += '<p class="comment-footer">2016年10月5日　回复　点赞54　转发12</p>';
+		html += '</div>';
+		html += '</li>';
+		return html;
+	}
+</script>
+
+
+
+
+</body></html>
